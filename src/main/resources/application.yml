@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: my-first-service
+eureka:
+  instance:
+    appname: my-first-service
+  client:
+    register-with-eureka: true
+    fetch-registry: true # 외부에서 검색
+    service-url:
+      defaultZone: http://admin:qwer1234@127.0.0.1:8761/eureka
