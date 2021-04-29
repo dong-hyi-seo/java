@@ -10,14 +10,13 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/com.googlecode.slf4j-maven-plugin-log/slf4j-maven-plugin-log
+    implementation group: 'com.googlecode.slf4j-maven-plugin-log', name: 'slf4j-maven-plugin-log', version: '1.0.0'
+
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
-    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.5'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.5'
-    compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.5'
     // https://mvnrepository.com/artifact/io.projectreactor/reactor-core
     implementation group: 'io.projectreactor', name: 'reactor-core', version: '3.3.16.RELEASE'
-
 
     // https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams
     implementation group: 'org.reactivestreams', name: 'reactive-streams', version: '1.0.0'
