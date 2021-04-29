@@ -20,7 +20,7 @@ dependencies {
 
 
     // https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams
-    implementation group: 'org.reactivestreams', name: 'reactive-streams', version: '1.0.3'
+    implementation group: 'org.reactivestreams', name: 'reactive-streams', version: '1.0.0'
     // https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams-tck
     testImplementation group: 'org.reactivestreams', name: 'reactive-streams-tck', version: '1.0.3'
     // https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams-tck-flow
