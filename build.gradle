@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/com.googlecode.slf4j-maven-plugin-log/slf4j-maven-plugin-log
-    implementation group: 'com.googlecode.slf4j-maven-plugin-log', name: 'slf4j-maven-plugin-log', version: '1.0.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.4.5'
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
@@ -28,6 +28,9 @@ dependencies {
     implementation group: 'org.reactivestreams', name: 'reactive-streams-examples', version: '1.0.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+    implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.4.5'
+
 }
 
 test {
