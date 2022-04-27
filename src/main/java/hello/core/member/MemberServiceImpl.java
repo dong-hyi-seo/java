@@ -7,8 +7,12 @@ package hello.core.member;
  */
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 
+    //해당 부분은 AppConfig(기획자) 내가 할당해줄게 !! 이런뜻...
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public void join(Member member) {
