@@ -20,9 +20,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    /**
-     * @Bean??
-     */
 
     //memberRepository 를 함수로 따로빼주면 해당 repository를 memory -> storage로 갈경우 한 함수내에서만 변경하면 됨!! (이점)
     //어플리케이션 전체 구성이 어떻게 되어있는지 빠르게 파악이가능 !!
@@ -38,7 +35,7 @@ public class AppConfig {
 
     @Bean
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), discountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
