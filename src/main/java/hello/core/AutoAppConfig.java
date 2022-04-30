@@ -8,7 +8,6 @@ import org.springframework.context.annotation.FilterType;
 @ComponentScan(
         //basePackages 의 default 값은 ?
             //해당 AutoAppConfig package 하위를 다 찾는다.
-        basePackages = "hello.core.member",
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 public class AutoAppConfig {
