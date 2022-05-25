@@ -28,8 +28,8 @@ import org.springframework.context.annotation.Import;
 //@Import(ProxyFactoryConfigV2.class)
 //@Import(BeanPostProcessorConfig.class)
 //@Import(AutoProxyConfig.class)
-@Import(AopConfig.class)
-@SpringBootApplication(scanBasePackages = "hello.proxy.app") //주의
+@Import(AopConfig.class) //클래스 스프링 빈으로 등록한다.
+@SpringBootApplication(scanBasePackages = "hello.proxy.app") //주의 일부로 app쪽 소스만 쓸려고 이부분만 component scan하게 나둠 그래서 따로 Import 해준것임..
 public class ProxyApplication {
 
 	public static void main(String[] args) {
