@@ -1,16 +1,6 @@
 package hello.proxy;
 
-import hello.proxy.config.AppV1Config;
-import hello.proxy.config.AppV2Config;
-import hello.proxy.config.v1_proxy.ConcreteProxyConfig;
 import hello.proxy.config.v1_proxy.InterfaceProxyConfig;
-import hello.proxy.config.v2_dynamicproxy.DynamicProxyBasicConfig;
-import hello.proxy.config.v2_dynamicproxy.DynamicProxyFilterConfig;
-import hello.proxy.config.v3_proxyfactory.ProxyFactoryConfigV1;
-import hello.proxy.config.v3_proxyfactory.ProxyFactoryConfigV2;
-import hello.proxy.config.v4_postprocessor.BeanPostProcessorConfig;
-import hello.proxy.config.v5_autoproxy.AutoProxyConfig;
-import hello.proxy.config.v6_aop.AopConfig;
 import hello.proxy.trace.logtrace.LogTrace;
 import hello.proxy.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +10,7 @@ import org.springframework.context.annotation.Import;
 
 //@Import(AppV1Config.class)
 //@Import({AppV1Config.class, AppV2Config.class})
-//@Import(InterfaceProxyConfig.class)
+@Import(InterfaceProxyConfig.class)
 //@Import(ConcreteProxyConfig.class)
 //@Import(DynamicProxyBasicConfig.class)
 //@Import(DynamicProxyFilterConfig.class)
@@ -28,7 +18,6 @@ import org.springframework.context.annotation.Import;
 //@Import(ProxyFactoryConfigV2.class)
 //@Import(BeanPostProcessorConfig.class)
 //@Import(AutoProxyConfig.class)
-@Import(AopConfig.class) //클래스 스프링 빈으로 등록한다.
 @SpringBootApplication(scanBasePackages = "hello.proxy.app") //주의 일부로 app쪽 소스만 쓸려고 이부분만 component scan하게 나둠 그래서 따로 Import 해준것임..
 public class ProxyApplication {
 
