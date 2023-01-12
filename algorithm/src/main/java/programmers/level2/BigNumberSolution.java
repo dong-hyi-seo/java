@@ -1,5 +1,9 @@
 package programmers.level2;
 
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * @author donghyi.seo
  * @since 2023-01-10
@@ -28,13 +32,76 @@ public class BigNumberSolution {
      * 원소가 첫째자리가 제일큰수대로 재정렬해서 붙인다?
      */
     public String mySolution(int[] numbers) {
+        StringBuilder answer = new StringBuilder();
+
+        List<String> numberStrList = new ArrayList<>();
+        System.out.println("numbers = " + Arrays.toString(numbers));
+        for (int i=0; i<numbers.length; i++) {
+            numberStrList.add(Integer.toString(numbers[i]));
+        }
+        List<String> sortResultList = quickSort(numberStrList);
+        if (sortResultList.get(sortResultList.size()-1).equals("0")) {
+            return "0";
+        }
+        for (int i = sortResultList.size() - 1 ; i >= 0; i--) {
+            answer.append(sortResultList.get(i));
+        }
+        System.out.println("answer = " + answer.toString());
+        return answer.toString();
+    }
+    //9534330
+    public List<String> quickSort(List<String> numberStrList) {
+        if (numberStrList.size() <= 1) return numberStrList;
+
+        //pivot 중간 값위치를 선정한다.
+        String pivotStr = numberStrList.get(numberStrList.size() / 2);
+
+        List<String> lessList = new ArrayList<>();
+        List<String> equalList = new ArrayList<>();
+        List<String> greaterList = new LinkedList<>();
+
+
+        // 그냥 두개의수를 합쳐서 더 큰수로 정렬하면될것?
+        for (String numStr : numberStrList) {
+            int a = Integer.parseInt(numStr + pivotStr);
+            int b = Integer.parseInt(pivotStr + numStr);
+
+            //위에서 선정한 pivot보다 작은값을 add
+            if (a < b) lessList.add(numStr);
+                //위에서 선정한 Pivot보다 큰값을 add
+            else if (a > b) greaterList.add(numStr);
+            else equalList.add(numStr);
+        }
+        return Stream.of(quickSort(lessList), equalList, quickSort(greaterList))
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * mySolution 보다 두배더빠름
+     */
+    public String anotherSolution(int[] numbers) {
         String answer = "";
 
-        int max = 0;
-        for (int i=0; i<numbers.length; i++) {
-            int num = numbers[i];
-
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < numbers.length; i++) {
+            list.add(numbers[i]);
         }
-        return answer;
+        list.sort((a, b) -> {
+            String as = String.valueOf(a);
+            String bs = String.valueOf(b);
+            return -Integer.compare(Integer.parseInt(as + bs), Integer.parseInt(bs + as));
+        });
+        StringBuilder sb = new StringBuilder();
+        for(Integer i : list) {
+            sb.append(i);
+        }
+        answer = sb.toString();
+        if(answer.charAt(0) == '0') {
+            return "0";
+        }else {
+            return answer;
+        }
     }
+
 }
