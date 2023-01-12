@@ -1,0 +1,45 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+
+== Comment
+=== 댓글 등록
+==== Request
+include::{snippets}/comment-post/http-request.adoc[]
+==== Response
+include::{snippets}/comment-post/http-response.adoc[]
+
+=== 댓글 등록 - 내용이 없는 경우
+==== Request
+include::{snippets}/comment-post-emptyContent/http-request.adoc[]
+==== Response
+include::{snippets}/comment-post-emptyContent/http-response.adoc[]
+
+=== 댓글 요청 - 사용자
+==== Request
+include::{snippets}/comment-queryComments-user/http-request.adoc[]
+==== Response
+include::{snippets}/comment-queryComments-user/http-response.adoc[]
+
+=== 댓글 요청 - 게스트
+==== Request
+include::{snippets}/comment-queryComments-guest/http-request.adoc[]
+==== Response
+include::{snippets}/comment-queryComments-guest/http-response.adoc[]
+
+=== 댓글 삭제 - 사용자
+==== Request
+include::{snippets}/comment-delete-loggedIn/http-request.adoc[]
+==== Response
+include::{snippets}/comment-delete-loggedIn/http-response.adoc[]
+
+=== 댓글 삭제 - 게스트
+==== Request
+include::{snippets}/comment-delete-unLoggedIn/http-request.adoc[]
+==== Response
+include::{snippets}/comment-delete-unLoggedIn/http-response.adoc[]

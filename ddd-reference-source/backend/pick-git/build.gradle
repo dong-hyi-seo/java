@@ -1,0 +1,175 @@
+plugins {
+    id "org.asciidoctor.convert" version "1.5.9.2"
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'com.woowacourse'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+dependencies {
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.data:spring-data-elasticsearch:4.2.2'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.15.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.15.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.15.0'
+    implementation 'org.apache.logging.log4j:log4j-jul:2.15.0'
+    implementation 'com.lmax:disruptor:3.4.2'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.apache.httpcomponents:httpclient:4.5'
+    implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
+    implementation 'org.reflections:reflections:0.9.10'
+    implementation 'org.flywaydb:flyway-core:6.4.2'
+    implementation 'org.springframework.boot:spring-boot-starter-cache:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.5.4'
+    implementation ('it.ozimov:embedded-redis:0.7.3') {
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+    }
+
+    compileOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.6.RELEASE'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.rest-assured:rest-assured:4.4.0'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    modules {
+        module("org.springframework.boot:spring-boot-starter-logging") {
+            replacedBy("org.springframework.boot:spring-boot-starter-log4j2", "Use Log4j2 instead of Logback")
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processResources.dependsOn('copySubmodule')
+
+task copySubmodule(type: Copy) {
+    from './security'
+    include '*.yml'
+    into './src/main/resources'
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    finalizedBy 'copyRestDocs'
+}
+
+task copyRestDocs(type: Copy) {
+    dependsOn('asciidoctor')
+    from 'build/asciidoc/html5'
+    include '*.html'
+    into 'src/main/resources/static/docs'
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        xml.enabled true
+        csv.enabled false
+
+        html.destination file("src/jacoco/jacoco.html")
+        xml.destination file("src/jacoco/jacoco.xml")
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [
+                            '**/PickGitApplication*',
+                            '**/*Request*',
+                            '**/*Response*',
+                            '**/*Dto*',
+                            '**/*NameAndUrl*',
+                            '**/*Requester*',
+                            '**/*OAuthClient*',
+                            '**/common*',
+                            '**/format*',
+                            '**/*Exception*',
+                            '**/*Content*',
+                            '**/content*',
+                            '**/*S3*',
+                            '**/*DataSource*',
+                            '**/*Slave*',
+                            '**/*Elastic*',
+                            '**/*GithubContributionExtractor*',
+                            '**/*Configuration*'
+                    ])
+        }))
+    }
+
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            element = 'CLASS'
+
+            limit {
+                counter = 'CLASS'
+                value = 'COVEREDRATIO'
+                minimum = 0.70
+            }
+
+            excludes = [
+                    '**.*RestTemplate*',
+                    '**.*PickGitApplication*',
+                    '**.*Request*',
+                    '**.*Response*',
+                    '**.*Dto*',
+                    '**.*NameAndUrl',
+                    '**.*Requester*',
+                    '**.*OAuthClient*',
+                    '**.*Interceptor*',
+                    '**.*Exception*',
+                    '**.*Content*',
+                    '**.*Storage*',
+                    '**.*DataSource*',
+                    '**.*Slave*',
+                    '**.*Elastic*',
+                    '**.*GithubContributionExtractor*',
+                    '**.*Configuration*'
+            ]
+        }
+    }
+}
+
+bootRun {
+    args = ["--spring.profiles.active=local"]
+}
