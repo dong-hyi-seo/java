@@ -1,0 +1,16 @@
+server:
+  port: 8761
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: hubble-eureka
+  security:
+    user:
+      name: admin
+      password: qwer1234
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
