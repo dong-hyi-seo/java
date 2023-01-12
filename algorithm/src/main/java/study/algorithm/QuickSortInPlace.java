@@ -25,6 +25,4 @@ public class QuickSortInPlace {
 
     }
 
-    private static int partition(){}
-
 }
