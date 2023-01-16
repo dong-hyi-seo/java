@@ -1,5 +1,9 @@
 package programmers.level1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author donghyi,seo
  * @since 2023-01-12
@@ -39,8 +43,76 @@ package programmers.level1;
  */
 public class MockExamSolution {
 
+    private final static int[] people1 = {1, 2, 3, 4, 5};
+    private final static int[] people2 = {2, 1, 2, 3, 2, 4, 2, 5};
+    private final static int[] people3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+
+    /**
+     * 각 수포자의 답 찍는 패턴을 찾는다 그래서 답안지 배열 index와 맞게일치하는 것을 가지고오면딘다.
+     * 일치하는 것의 판단은 규치패턴수의 대한 나머지!
+     * @param answers
+     * @return
+     */
     public int[] mySolution(int[] answers) {
-        int[] answer = {};
-        return answer;
+        List<Integer> list = new ArrayList<>();
+
+        //1번 수포자는 5개씩
+        //2번 수포자는 8개씩
+        //3번 수포자는 10개씩
+
+        //답안지를 가지고 순서대로 체크
+        int[] countArr = new int[3];
+        int peopleIndex = 0;
+        int people1Num = 0;
+        int people2Num = 0;
+        int people3Num = 0;
+        for ( int i=0; i<answers.length; i++) {
+            // i == 0 / index 0
+            // i == 1 / index 1
+            // i == 2 / index 2
+            // i == 3 / index 3
+            // i == 4 / index 4
+            // i = 5 / index 0
+            // i == 6 / index 1
+            // i == 7 / index 2
+            int num = answers[i];
+            if (i < 5) {
+                peopleIndex = i;
+            } else {
+                peopleIndex = i % 5;
+            }
+            if (num == people1[peopleIndex]) {
+                people1Num ++;
+            }
+
+            if (i < 8) {
+                peopleIndex = i;
+            } else {
+                peopleIndex = i % 8;
+            }
+            if (num == people2[peopleIndex]) {
+                people2Num ++;
+            }
+
+            if (i < 10) {
+                peopleIndex = i;
+            } else {
+                peopleIndex = i % 10;
+            }
+            if (num == people3[peopleIndex]) {
+                people3Num ++;
+            }
+        }
+        countArr[0] = people1Num;
+        countArr[1] = people2Num;
+        countArr[2] = people3Num;
+
+        int max = Arrays.stream(countArr).max().getAsInt();
+        for (int i=0; i<countArr.length; i ++) {
+            if (max == countArr[i]) {
+                list.add(i + 1);
+            }
+        }
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
