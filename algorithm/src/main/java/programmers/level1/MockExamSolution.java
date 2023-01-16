@@ -3,7 +3,7 @@ package programmers.level1;
 /**
  * @author donghyi,seo
  * @since 2023-01-12
- * URL :
+ * URL : https://school.programmers.co.kr/learn/courses/30/lessons/42840
  * 모의고사 문제
  *
  * 문제 설명
