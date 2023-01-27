@@ -1,7 +1,7 @@
-package com.example.designpattern.factory_pattern.service;
+package com.example.designpattern.factory_pattern.basic.service;
 
-import com.example.designpattern.factory_pattern.vo.ParentProduct;
-import com.example.designpattern.factory_pattern.vo.ProductType;
+import com.example.designpattern.factory_pattern.basic.vo.ParentProduct;
+import com.example.designpattern.factory_pattern.basic.vo.ProductType;
 
 /**
  * 공장객체 추상화 클래스

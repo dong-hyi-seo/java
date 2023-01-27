@@ -1,4 +1,4 @@
-package com.example.designpattern.factory_pattern.vo;
+package com.example.designpattern.factory_pattern.basic.vo;
 
 import lombok.Builder;
 import lombok.NoArgsConstructor;

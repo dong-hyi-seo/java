@@ -1,14 +1,13 @@
 package com.example.designpattern.factory_pattern.service;
 
-import com.example.designpattern.factory_pattern.vo.ConcreteProductA;
-import com.example.designpattern.factory_pattern.vo.ParentProduct;
-import com.example.designpattern.factory_pattern.vo.ProductType;
+import com.example.designpattern.factory_pattern.basic.service.CreatorService;
+import com.example.designpattern.factory_pattern.basic.service.CreatorServiceFactory;
+import com.example.designpattern.factory_pattern.basic.vo.ParentProduct;
+import com.example.designpattern.factory_pattern.basic.vo.ProductType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest

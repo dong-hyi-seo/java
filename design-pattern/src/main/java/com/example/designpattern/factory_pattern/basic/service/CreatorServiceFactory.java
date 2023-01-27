@@ -1,6 +1,6 @@
-package com.example.designpattern.factory_pattern.service;
+package com.example.designpattern.factory_pattern.basic.service;
 
-import com.example.designpattern.factory_pattern.vo.ProductType;
+import com.example.designpattern.factory_pattern.basic.vo.ProductType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 

@@ -1,10 +1,8 @@
-package com.example.designpattern.factory_pattern.controller;
+package com.example.designpattern.factory_pattern.basic.controller;
 
-import com.example.designpattern.factory_pattern.vo.ConcreteProductB;
-import com.example.designpattern.factory_pattern.vo.ParentProduct;
+import com.example.designpattern.factory_pattern.basic.vo.ConcreteProductB;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;

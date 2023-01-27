@@ -1,8 +1,8 @@
-package com.example.designpattern.factory_pattern.service;
+package com.example.designpattern.factory_pattern.basic.service;
 
-import com.example.designpattern.factory_pattern.vo.ConcreteProductA;
-import com.example.designpattern.factory_pattern.vo.ParentProduct;
-import com.example.designpattern.factory_pattern.vo.ProductType;
+import com.example.designpattern.factory_pattern.basic.vo.ConcreteProductA;
+import com.example.designpattern.factory_pattern.basic.vo.ParentProduct;
+import com.example.designpattern.factory_pattern.basic.vo.ProductType;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

@@ -1,6 +1,6 @@
-package com.example.designpattern.factory_pattern.controller;
+package com.example.designpattern.factory_pattern.basic.controller;
 
-import com.example.designpattern.factory_pattern.service.ProductService;
+import com.example.designpattern.factory_pattern.basic.service.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
