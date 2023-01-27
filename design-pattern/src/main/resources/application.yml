@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /design-pattern
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: admin
+  password: '@1026Antock@'
+  exchange: design-pattern.exchange
+  routing-key: design-pattern.routing
+  queue: design-pattern.queue
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: ${rabbitmq.host}
+    port: ${rabbitmq.port}
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}
+    virtual-host: /
+    requested-heartbeat: 0
