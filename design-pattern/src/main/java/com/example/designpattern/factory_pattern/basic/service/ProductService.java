@@ -26,11 +26,12 @@ public class ProductService {
     }
 
     public void send() {
-
         try {
+
             //create job
             ParentProduct product = creatorServiceFactory.getService(ProductType.MEAT)
                     .createProduct();
+
 
             log.info("exchange = " + this.exchange);
             log.info("routingKey = " + this.routingKey);

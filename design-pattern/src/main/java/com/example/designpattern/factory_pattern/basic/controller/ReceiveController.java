@@ -25,7 +25,7 @@ public class ReceiveController {
                                                        Channel channel,
                                                        @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws Exception {
         try {
-            log.info("bProduct = " + bProduct);
+            log.info("bProduct = " + bProduct.getSomething());
             log.info("name = " + bProduct.getName());
             log.info("price = " + bProduct.getPrice());
 
