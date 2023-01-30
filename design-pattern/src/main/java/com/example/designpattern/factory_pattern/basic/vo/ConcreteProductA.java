@@ -8,8 +8,7 @@ public class ConcreteProductA extends ParentProduct {
 
 
     @Builder
-    public ConcreteProductA(String id, String name, Integer price) {
-        super(id, name, price);
+    public ConcreteProductA(String id, String name, Integer price, String factory) {
+        super(id, name, price, factory);
     }
-
 }

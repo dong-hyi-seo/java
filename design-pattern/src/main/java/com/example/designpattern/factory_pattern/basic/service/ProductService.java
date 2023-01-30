@@ -29,7 +29,7 @@ public class ProductService {
 
         try {
             //create job
-            ParentProduct product = creatorServiceFactory.getService(ProductType.PRODUCTB)
+            ParentProduct product = creatorServiceFactory.getService(ProductType.MEAT)
                     .createProduct();
 
             log.info("exchange = " + this.exchange);

@@ -7,23 +7,12 @@ import java.util.function.Supplier;
 
 public enum PayType {
 
-    KAKAO {
-        @Override
-        public PayService getInstance() {
-            return new KakaoFactory();
-        }
-    },
+    KAKAO,
     KB ,
     IBK,
     WOORI,
     SINHAN;
 
-
-    public Card create() {
-        return getInstance().createCard();
-    }
-
-    public abstract PayService getInstance();
 
 
 }

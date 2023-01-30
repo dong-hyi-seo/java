@@ -14,10 +14,11 @@ public class ConcreteProductB extends ParentProduct {
 
 
     @Builder
-    public ConcreteProductB(String id, String name, Integer price, String something) {
-        super(id, name, price);
+    public ConcreteProductB(String id, String name, Integer price, String factory, String something) {
+        super(id, name, price, factory);
         this.something = something;
     }
+
 
     @Override
     public String toString() {

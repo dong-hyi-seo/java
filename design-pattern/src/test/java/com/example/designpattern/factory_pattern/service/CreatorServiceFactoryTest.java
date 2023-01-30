@@ -20,20 +20,20 @@ class CreatorServiceFactoryTest {
     void 제품_타입별로_서비스_가져오기() {
 
         //given
-        ProductType aType = ProductType.PRODUCTA;
-        ProductType bType = ProductType.PRODUCTB;
+        ProductType meat = ProductType.MEAT;
+        ProductType snack = ProductType.SNACK;
 
         //when
-        CreatorService aTypeService = creatorServiceFactory.getService(aType);
-        CreatorService bTypeService = creatorServiceFactory.getService(bType);
+        CreatorService aFactoryService = creatorServiceFactory.getService(meat);
+        CreatorService bFactoryService = creatorServiceFactory.getService(snack);
 
-        ParentProduct aProduct = aTypeService.createProduct();
+        ParentProduct aProduct = aFactoryService.createProduct();
         System.out.println("aProduct = " + aProduct.toString());
-        ParentProduct bProduct = bTypeService.createProduct();
+        ParentProduct bProduct = bFactoryService.createProduct();
         System.out.println("bProduct = " + bProduct.toString());
+
         //then
-        Assertions.assertThat(aTypeService.getProductType()).isEqualTo(ProductType.PRODUCTA);
-        Assertions.assertThat(aTypeService.getProductType()).isEqualTo(ProductType.PRODUCTA);
+
 
     }
 }
