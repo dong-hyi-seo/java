@@ -17,7 +17,6 @@ public class BFactoryService implements CreatorService {
         this.bSubService = bSubService;
     }
 
-
     @Override
     public FactoryType getFactoryType() {
         return FactoryType.BFactory;
@@ -25,7 +24,6 @@ public class BFactoryService implements CreatorService {
 
     @Override
     public ParentProduct createProduct() {
-        System.out.println("b FActory!!");
         return ConcreteProductB.builder().id(String.valueOf(UUID.randomUUID()))
                 .price(1000)
                 .name("B제품")
