@@ -34,7 +34,35 @@ package leetcode;
  */
 public class LinkedListCycle {
 
+    /**
+     * fast and slow 알고리즘 사용
+     * (토끼와 거북이 알고리즘 사용)
+     * 토끼는 2칸씩 이동
+     * 거북이는 1칸씩 이동
+     * 같이 순회하면서 만나는지점이 순회한코스
+     * 만날때 return true 하면 끝!
+     */
     public boolean hasCycle(ListNode head) {
+        ListNode tot = head; //거북이는 한칸
+        ListNode hare = head; //토끼는 두칸
+        while(hare != null && hare.next != null) {
+            tot = tot.next;
+            hare = hare.next.next;
+
+            if (tot == hare) {
+                return true;
+            }
+
+        }
         return false;
+    }
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
     }
 }

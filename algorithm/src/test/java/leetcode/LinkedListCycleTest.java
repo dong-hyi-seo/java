@@ -22,17 +22,17 @@ class LinkedListCycleTest {
     @Test
     void linkedListCycle_Test() {
         //given
-        ListNode firstNode = new ListNode(3);
-        firstNode.next = new ListNode(2);
-        firstNode.next.next = new ListNode(0);
-        firstNode.next.next.next = new ListNode(-4);
-        //firstNode.next.next.next.next = firstNode.next;
+        LinkedListCycle.ListNode firstNode = new LinkedListCycle.ListNode(3);
+        firstNode.next = new LinkedListCycle.ListNode(2);
+        firstNode.next.next = new LinkedListCycle.ListNode(0);
+        firstNode.next.next.next = new LinkedListCycle.ListNode(-4);
+        firstNode.next.next.next.next = firstNode.next;
 
+        //when
+        boolean answer = linkedListCycle.hasCycle(firstNode);
 
-        System.out.println("firstNode = " +firstNode.toString());
-
-
-
+        //then
+        assertThat(answer).isTrue();
     }
 
 }
