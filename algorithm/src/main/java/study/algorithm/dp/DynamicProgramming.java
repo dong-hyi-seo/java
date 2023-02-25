@@ -1,4 +1,4 @@
-package study.algorithm;
+package study.algorithm.dp;
 
 /**
  * @author donghyi.seo

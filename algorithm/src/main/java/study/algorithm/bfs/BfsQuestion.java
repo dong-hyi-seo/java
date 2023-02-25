@@ -1,4 +1,4 @@
-package study.algorithm;
+package study.algorithm.bfs;
 
 /**
  * - 동빈이는 N * M 크기의 직사각형 형태의 미로에 갇혓습니다. 미로에는 여러마리의 괴물이 있어 이를 피해 탈출해야 한다.

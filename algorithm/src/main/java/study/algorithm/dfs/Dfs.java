@@ -1,4 +1,4 @@
-package study.algorithm;
+package study.algorithm.dfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
