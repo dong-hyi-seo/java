@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Objects;
+
 /**
  * @since 2023.02.25
  * URL : https://leetcode.com/problems/partition-list/
@@ -20,8 +22,37 @@ package leetcode;
 
 public class PartitionList {
 
+    /**
+     * 연결된 노드중 x 보다 작은것에는 lessNode에
+     * x 보다 같커나 큰 노드는 moreNode
+     */
     public ListNode partition(ListNode head, int x) {
 
+        if (head == null) return null;
+
+        System.out.println("head = " + head);
+        System.out.println("x = " + x);
+        ListNode lessHead = new ListNode();
+        ListNode moreHead = new ListNode();
+        ListNode lessNode = lessHead;
+        ListNode moreNode = moreHead;
+        ListNode node = head;
+        while (node != null) {
+            //node의 값이 x 보다 작으면 leftNode에
+            if (node.val < x) {
+                lessNode.next = node;
+                lessNode = lessNode.next;
+            } else {
+                moreNode.next = node;
+                moreNode = moreNode.next;
+            }
+            node = node.next;
+        }
+        moreNode.next = null;
+        System.out.println("lessHead = " + lessHead + " // moreHead = " + moreHead);
+        lessNode.next = moreHead.next;
+        System.out.println("lessHead = " + lessHead);
+        return lessHead.next;
     }
 
     public static class ListNode {
@@ -30,5 +61,31 @@ public class PartitionList {
         ListNode() {}
         ListNode(int val) { this.val = val; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        @Override
+        public String toString() {
+            return "ListNode{" +
+                    "val=" + val +
+                    ", next=" + next +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            ListNode listNode = (ListNode) o;
+
+            if (val != listNode.val) return false;
+            return Objects.equals(next, listNode.next);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = val;
+            result = 31 * result + (next != null ? next.hashCode() : 0);
+            return result;
+        }
     }
 }
