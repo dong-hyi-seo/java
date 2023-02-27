@@ -63,15 +63,11 @@ public class SpiralMatrix {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> answerList = new ArrayList<>();
 
-        boolean[][] visitedArr = new boolean[matrix.length][matrix[0].length];
-
         /**
          * 1, 2, 3, 4
          * 5, 6, 7, 8
          * 9, 10, 11, 12
          */
-        int num = matrix.length * matrix[0].length;
-
         int top = 0;
         int bottom = matrix.length - 1;
         int left = 0;
