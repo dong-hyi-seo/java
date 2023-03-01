@@ -1,5 +1,7 @@
 package leetcode.leetcode75.day2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -28,18 +30,25 @@ public class MultiplyStrings {
 
     public String multiply(String num1, String num2) {
 
-        Stack<String> stack = new Stack<>();
+        List<String> addTargetList = getAddTargetList(num1, num2);
+        String target = addTargetList.get(0);
+        for (int a = addTargetList.size() - 1; a>=1; a--) {
+            add(target, addTargetList.get(a));
+        }
+    }
 
-        int bb = 1;
-        int result = 0;
+    private String add(String num1, String num2) {
+
+        return target;
+    }
+    private List<String> getAddTargetList(String num1, String num2) {
+        List<String> addTargetList = new ArrayList<>();
         for (int a = num2.length()-1; a >= 0; a--) {
+            List<Integer> list = new ArrayList<>();
             int carry = 0;
             int nn = (int) num2.charAt(a) - 48; //일의 자리 뽑기
-            if (a < num2.length()-1) {
-                bb = bb*10;
-            }
-            System.out.println("nn = " + nn + " // bb = " + bb);
-            Stack<String> row = new Stack<>();
+
+            System.out.println("a = " + a + " // nn = " + nn);
             for (int b = num1.length()-1; b>=0; b-- ) {
                 int mm = (int) num1.charAt(b) - 48;
                 System.out.println(nn + " * " + mm);
@@ -51,11 +60,17 @@ public class MultiplyStrings {
                     c = r % 10; //나머지가 자리를 매김하고
                     carry = r / 10; //몫이 그다음자리로 넘어감
                 }
-                row.push(Integer.toString(c));
+                list.add(c);
             }
-            System.out.println("row = " + row);
+            StringBuilder sb = new StringBuilder();
+            for (int index=list.size() - 1; index >=0; index--) {
+                sb.append(list.get(index));
+            }
+            for (int y=0; y<num2.length()-1-a; y++) {
+                sb.append(0);
+            }
+            addTargetList.add(sb.toString());
         }
-        System.out.println("stack = " + stack);
-        return null;
+        return addTargetList;
     }
 }
