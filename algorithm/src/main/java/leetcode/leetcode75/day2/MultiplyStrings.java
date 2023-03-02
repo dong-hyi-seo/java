@@ -1,6 +1,7 @@
 package leetcode.leetcode75.day2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -30,47 +31,29 @@ public class MultiplyStrings {
 
     public String multiply(String num1, String num2) {
 
-        List<String> addTargetList = getAddTargetList(num1, num2);
-        String target = addTargetList.get(0);
-        for (int a = addTargetList.size() - 1; a>=1; a--) {
-            add(target, addTargetList.get(a));
+        if (num1.equals("0") || num2.equals("0")) return "0";
+
+        int[] arr = new int[num1.length() + num2.length()];
+
+        for (int i=num1.length()-1; i >= 0; i--) {
+            for (int j=num2.length()-1; j>=0; j--) {
+                arr[i + j + 1] += (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                arr[i + j] += arr[i+j+1]/10;
+                arr[i+j+1] %= 10;
+            }
         }
-    }
-
-    private String add(String num1, String num2) {
-
-        return target;
-    }
-    private List<String> getAddTargetList(String num1, String num2) {
-        List<String> addTargetList = new ArrayList<>();
-        for (int a = num2.length()-1; a >= 0; a--) {
-            List<Integer> list = new ArrayList<>();
-            int carry = 0;
-            int nn = (int) num2.charAt(a) - 48; //일의 자리 뽑기
-
-            System.out.println("a = " + a + " // nn = " + nn);
-            for (int b = num1.length()-1; b>=0; b-- ) {
-                int mm = (int) num1.charAt(b) - 48;
-                System.out.println(nn + " * " + mm);
-                int r = (nn * mm) + carry;
-                int c = 0;
-                if (b == 0) { //맨마지막계산은?
-                    c = r;
-                } else {
-                    c = r % 10; //나머지가 자리를 매김하고
-                    carry = r / 10; //몫이 그다음자리로 넘어감
+        System.out.println("arr = " + Arrays.toString(arr));
+        StringBuilder str = new StringBuilder();
+        for (int i=0; i<num1.length() + num2.length(); i++) {
+            if (i == 0) {
+                if (arr[i] == 0) {
+                    continue;
                 }
-                list.add(c);
             }
-            StringBuilder sb = new StringBuilder();
-            for (int index=list.size() - 1; index >=0; index--) {
-                sb.append(list.get(index));
-            }
-            for (int y=0; y<num2.length()-1-a; y++) {
-                sb.append(0);
-            }
-            addTargetList.add(sb.toString());
+            str.append(arr[i]);
+
         }
-        return addTargetList;
+
+        return str.toString();
     }
 }
