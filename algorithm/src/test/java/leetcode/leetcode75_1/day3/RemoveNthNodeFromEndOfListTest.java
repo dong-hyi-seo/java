@@ -1,6 +1,5 @@
-package leetcode.leetcode75.day3;
+package leetcode.leetcode75_1.day3;
 
-import leetcode.PartitionList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

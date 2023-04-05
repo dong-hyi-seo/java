@@ -1,4 +1,4 @@
-package leetcode.leetcode75.day1;
+package leetcode.leetcode75_1.day1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

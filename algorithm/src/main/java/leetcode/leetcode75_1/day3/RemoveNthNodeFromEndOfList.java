@@ -1,4 +1,4 @@
-package leetcode.leetcode75.day3;
+package leetcode.leetcode75_1.day3;
 
 import java.util.Objects;
 

@@ -1,8 +1,6 @@
-package leetcode.leetcode75.day1;
+package leetcode.leetcode75_1.day1;
 
-import javax.swing.text.Style;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package leetcode.leetcode75.day2;
+package leetcode.leetcode75_1.day2;
 
 /**
  * @since 2023.02.27

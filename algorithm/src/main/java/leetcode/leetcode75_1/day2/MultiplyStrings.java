@@ -1,9 +1,6 @@
-package leetcode.leetcode75.day2;
+package leetcode.leetcode75_1.day2;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * @since 2023.02.27
