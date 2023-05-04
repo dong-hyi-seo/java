@@ -7,7 +7,7 @@ import java.util.List;
 /**
  *
  * @since 2023-04-05
- * TODO : https://school.programmers.co.kr/learn/courses/30/lessons/42860?language=java
+ * URL : https://school.programmers.co.kr/learn/courses/30/lessons/42860?language=java
  문제 설명
  조이스틱으로 알파벳 이름을 완성하세요. 맨 처음엔 A로만 이루어져 있습니다.
  ex) 완성해야 하는 이름이 세 글자면 AAA, 네 글자면 AAAA
@@ -58,7 +58,12 @@ public class JoyStick {
             //순서대로 가는것과, 뒤로 돌아가는 것중 이동수가 적은 것을 선택
             // i*2를 하는이유는 백할려면 일단 내가 온만큼 다시 돌아간다음 + (내가 현재있는 위치를 전체길이에서 뺀만큼 돌아가야한다)
             move = Math.min(move, i * 2 + length - index);
-
+            System.out.println("=========" + name.charAt(i) + " ==========");
+            System.out.println("length = " + length);
+            System.out.println("index = " + index);
+            System.out.println("i = " + i);
+            System.out.println("move = " + move);
+            System.out.println("result = " + ((length - index) * 2 + i));
 
             //BBBBAAAAAAAB와 같이 처음부터 뒷부분을 먼저 입력하는 것이 더 빠른 경우도 고려
             move = Math.min(move, (length - index) * 2 + i);
