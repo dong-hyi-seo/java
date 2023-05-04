@@ -17,13 +17,24 @@ class FindPivotIndexTest {
     @Test
     void findPivotIndex_Test() {
         //given
-        int[] nums = {1, 2, 3, 4};
+        int[] nums = {1, 7, 3, 6, 5, 6};
 
-        //when
-        int[] answer = findPivotIndex.solution(nums);
+        int answer = findPivotIndex.solution(nums);
+        int expectedAnswer = 3;
 
-        //then
-        int[] expectedAnswer = {1, 3, 6, 10};
         assertThat(answer).isEqualTo(expectedAnswer);
     }
+
+    @Test
+    void findPivotIndex_Test2() {
+        //given
+        int[] nums = {2, 1, -1};
+
+        int answer = findPivotIndex.solution(nums);
+        int expectedAnswer = 0;
+
+        assertThat(answer).isEqualTo(expectedAnswer);
+    }
+
+
 }
