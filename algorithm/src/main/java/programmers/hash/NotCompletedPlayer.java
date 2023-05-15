@@ -1,11 +1,9 @@
 package programmers.hash;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
- * 완주하지못한선수
+ * 완주하지못한선수 - Level1
  * https://school.programmers.co.kr/learn/courses/30/lessons/42576
  */
 public class NotCompletedPlayer {

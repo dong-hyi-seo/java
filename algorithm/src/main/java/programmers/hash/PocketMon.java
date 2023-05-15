@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 포켓몬
+ * 포켓몬 - Level1
  * URL : https://school.programmers.co.kr/learn/courses/30/lessons/1845
  */
 public class PocketMon {
