@@ -1,5 +1,7 @@
 package programmers.stack_queue;
 
+import java.util.Arrays;
+
 /**
  * 주식가격 - Level2
  * https://school.programmers.co.kr/learn/courses/30/lessons/42584
@@ -12,6 +14,11 @@ package programmers.stack_queue;
  * 입출력 예
  * prices	return
  * [1, 2, 3, 2, 3]	[4, 3, 1, 1, 0]
+ * 돈1은 돈2까지 (4초까지) 떨어지지않는다.
+ * 돈2는 끝까지 떨어지지않기때문에 3초까지 떨어지지않는다.
+ * 돈3은 돈2까지 (1초까지) 떨어지지않는다.
+ * 돈2는 끝까지 떨어지지 않기때문에 1초까지 떨어지지 않는다.
+ * 돈3은 그이후에 없어서 0이다.
  * 입출력 예 설명
  * 1초 시점의 ₩1은 끝까지 가격이 떨어지지 않았습니다.
  * 2초 시점의 ₩2은 끝까지 가격이 떨어지지 않았습니다.
@@ -22,7 +29,16 @@ package programmers.stack_queue;
 public class StockPrice {
 
     public int[] solution(int[] prices) {
-        int[] answer = {};
+        int[] answer = new int[prices.length];
+        for (int i=0; i<prices.length; i++) {
+            int curPrice = prices[i];
+            for (int j=i+1; j<prices.length; j++) {
+                answer[i]++;
+                if (curPrice > prices[j]) {
+                    break;
+                }
+            }
+        }
         return answer;
     }
 }
