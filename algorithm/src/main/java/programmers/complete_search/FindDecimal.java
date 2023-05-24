@@ -1,6 +1,7 @@
 package programmers.complete_search;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * 소수찾기 - Level2
@@ -27,44 +28,28 @@ public class FindDecimal {
 
         //주어진 카드숫자로 만들수있는 모든 수를 만든다.(완전탐색)
         recursive("", numbers);
-        System.out.println("numberSet = " +numberSet);
+        System.out.println("numberSet = " + numberSet);
 
         //위에서 주어진 카드로 모둔 숫자를 만든 배열을 소수인지 체크해서 소수이면 카운트해서 return하면됨
-
-
+        for (Iterator<Integer> it = numberSet.iterator(); it.hasNext(); ) {
+            Integer number = it.next();
+            if (isPrimeNumber(number)) {
+                System.out.println("number = " + number);
+                 answer ++;
+            }
+        }
         return answer;
     }
 
-    /**
-     * combine 조합했던 숫자
-     * others는 남은 숫자
-     * 1.
-     * comb = "" others = 171
-     * i=0 comb = 1
-     * comb는 처음에 1과 [7,1]의 조합 재귀돌리고
-     * comb는 두번째 7과 [1,1]의 조합 재귀를 돌리고
-     */
     public void recursive(String comb, String others) {
-        System.out.println("========= recursive ============");
-        System.out.println("comb = " + comb + " // others = " + others);
         // 1. 현재 조합을 set에 추가한다.
         if (!comb.equals("")) //조합한 숫자가 있으면 set에 담는다.
             numberSet.add(Integer.valueOf(comb));
 
-        if (others.length() == 0) {
-            System.out.println("======= 하나의 combs에 대해 종료 =======");
-            return;
-        }
         // 2. 남은 숫자 중 한 개를 더해 새로운 조합을 만든다.
-        //
         for (int i = 0; i < others.length(); i++) {
-            System.out.println("i = " + i + " // comb = " + comb + " // others = " + others);
-            System.out.println("comb + others.charAt(i) = " +comb + others.charAt(i));
-            System.out.println("others.substring(0, i) = " +others.substring(0, i));
-            System.out.println("others.substring(i + 1) = " +others.substring(i + 1));
             recursive(comb + others.charAt(i), others.substring(0, i) + others.substring(i + 1));
         }
-
 
     }
 
@@ -76,8 +61,7 @@ public class FindDecimal {
         //제곱근을 구한다 나눌수있는 범위까지만 반복문을 돌기위해
         //10의 제곱근은  정수 3으로 하기때문에 2~3까지만 돌고 판단하면됨
         int lim = (int) Math.sqrt(number);
-
-        for (int i = 2; i < lim; i++) {
+        for (int i = 2; i <= lim; i++) {
             if (number % i == 0) {
                 return false;
             }

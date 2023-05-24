@@ -16,10 +16,19 @@ class FindDecimalTest {
 
     @Test
     void findDecimal_Test1() {
-        final String numbers = "171";
+        final String numbers = "17";
 
         int answer = findDecimal.solution(numbers);
 
         assertThat(answer).isEqualTo(3);
+    }
+
+    @Test
+    void findDecimal_Test2() {
+        final String numbers = "1231";
+
+        int answer = findDecimal.solution(numbers);
+
+        assertThat(answer).isEqualTo(18);
     }
 }
