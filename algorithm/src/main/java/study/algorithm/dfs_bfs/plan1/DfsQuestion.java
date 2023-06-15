@@ -1,7 +1,4 @@
-package study.algorithm.dfs;
-
-import java.util.Arrays;
-import java.util.List;
+package study.algorithm.dfs_bfs.plan1;
 
 /**
  * 얼음문제
