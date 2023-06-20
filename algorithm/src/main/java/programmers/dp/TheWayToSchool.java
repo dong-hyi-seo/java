@@ -1,5 +1,7 @@
 package programmers.dp;
 
+import java.util.Arrays;
+
 /**
  * 등굣길 - Level3
  * URL : https://school.programmers.co.kr/learn/courses/30/lessons/42898
@@ -25,8 +27,8 @@ public class TheWayToSchool {
 
     /**
      *
-     * @param m = 4 가로
-     * @param n = 3 세로
+     * @param m = 4 가로 (열의갯수)
+     * @param n = 3 세로 (가로갯수)
      * @param puddles = [[2, 2]]
      * @return 4;
      *
@@ -36,9 +38,52 @@ public class TheWayToSchool {
      * 물 웅덩이 위치 : [[2,2]]
      *
      * 2. 물웅덩이 잠긴지역을 피해서 가는 최단경로의 개수
+     * [1, 1, 1, 1]
+     * [1, -1, 1, 1]
+     * [1, 1, 1, 1]
      */
     public int solution(int m, int n, int[][] puddles) {
         int answer = 0;
+        int mod = 1000000007;
+        int[][] dp = new int[n+1][m+1];
+        /**
+         * dp 이차원 배열에 웅덩이 할당한다.
+         * 소스를보면 반대로 하는데 문제에 m, n으로 설명하지만 가로는 n 세로는 m이므로
+         * 웅덩이도 반대로 해서 할당해준다.
+         */
+        for (int[] puddle: puddles) {
+            dp[puddle[1]][puddle[0]] = -1;
+        }
+
+        //출발지점 1로 초기화
+        dp[1][1] = 1;
+        System.out.println("dp = " + Arrays.deepToString(dp));
+
+        /**
+         * [0, 0, 0, 0, 0]
+         * [0, 1, 0, 0, 0]
+         * [0, 0, -1, 0, 0]
+         * [0, 0, 0, 0, 0]
+         */
+        for(int row=1; row<n+1; row++) {
+            for (int col=1; col<m+1; col++) {
+                /**
+                 * 1. row = 2, col = 1
+                 * dp[1][1] == 1 ->
+                 * dp[2][0] == 0
+                 *
+                 * 2. row = 1, col = 2
+                 * dp[0][2]
+                 */
+                //웅덩이를 만났을때? 다른루트!
+                if(dp[row][col] == -1) {
+                    continue;
+                }
+                if(dp[row-1][col] > 0) dp[row][col] += dp[row-1][col] % mod;
+                if(dp[row][col - 1] > 0) dp[row][col] += dp[row][col - 1] % mod;
+            }
+        }
+
         return answer;
     }
 
