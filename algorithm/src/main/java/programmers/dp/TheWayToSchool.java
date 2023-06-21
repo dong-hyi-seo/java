@@ -79,18 +79,21 @@ public class TheWayToSchool {
                  * 즉 맨위, 맨 좌측
                  * 그리고 좌측과 위측이 존재하는 칸들은 이전 x행값을 자기자신과 더해고
                  * 위 더한값에 또 이전 y값을 더하여 좌측, 위측 더한값을 구한다.
+                 *
+                 * 계산하면서 mod를 계쏙 나누어 나머지를 구하는 이유는 효율성테스트에서
+                 * 가로 세로가 크게 설정되어잇는경우 long 사이즈를 넘어 Overflow 발생
                  */
                 if(row != 0) {
-                    dp[row][col] += dp[row-1][col];
+                    dp[row][col] += dp[row-1][col] % mod; //계산하자마자 mod로 나눈 나머지를 계산해둔다.
                 }
 
 
                 if(col != 0) {
-                    dp[row][col] += dp[row][col-1];
+                    dp[row][col] += dp[row][col-1] % mod; //계산하자마자 mod로 나눈 나머지를 계산해둔다.
                 }
             }
         }
-        return dp[n-1][m-1] % mod;
+        return dp[n-1][m-1] % mod; //계산하자마자 mod로 나눈 나머지를 계산해둔다.
     }
 
 }
