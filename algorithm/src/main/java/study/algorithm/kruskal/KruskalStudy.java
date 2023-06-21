@@ -94,7 +94,7 @@ public class KruskalStudy {
         b = find(parent, b); //5
 
 
-        if(a < b) parent[a] = b;
+        if(a < b) parent[b] = a;
         else parent[a] = b;
         System.out.println("after union a : " + a + " // b : " + b);
         System.out.println("after patent = " + Arrays.toString(parent));

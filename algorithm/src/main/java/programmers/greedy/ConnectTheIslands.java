@@ -13,6 +13,8 @@ package programmers.greedy;
  * 도달할 수만 있으면 통행 가능하다고 봅니다.
  * 예를 들어 A 섬과 B 섬 사이에 다리가 있고,
  * B 섬과 C 섬 사이에 다리가 있으면 A 섬과 C 섬은 서로 통행 가능합니다.
+ *
+ * 딱봐도 크루스칼 알고리즘으로 최소비용을 구하는 것이다 !!
  */
 public class ConnectTheIslands {
 
@@ -24,6 +26,25 @@ public class ConnectTheIslands {
      */
     public int solution(int n, int[][] costs) {
         int answer = 0;
+
+        //총 노드수를 구한다.
+
+        //부모 상태를 담는 배열 초기화
         return answer;
+    }
+
+    public static int find(int[] parent, int node) {
+        if (parent[node] == node) {
+            return node;
+        }
+        return find(parent, parent[node]);
+    }
+
+    public static void union(int[] parent, int a, int b) {
+        a = find(parent, a);
+        b = find(parent, b);
+
+        if(a < b) parent[b] = a;
+        else parent[a] = b;
     }
 }
