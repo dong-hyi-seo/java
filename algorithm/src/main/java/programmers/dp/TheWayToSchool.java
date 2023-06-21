@@ -45,46 +45,52 @@ public class TheWayToSchool {
     public int solution(int m, int n, int[][] puddles) {
         int answer = 0;
         int mod = 1000000007;
-        int[][] dp = new int[n+1][m+1];
+        int[][] dp = new int[n][m];
         /**
          * dp 이차원 배열에 웅덩이 할당한다.
          * 소스를보면 반대로 하는데 문제에 m, n으로 설명하지만 가로는 n 세로는 m이므로
          * 웅덩이도 반대로 해서 할당해준다.
          */
         for (int[] puddle: puddles) {
-            dp[puddle[1]][puddle[0]] = -1;
+            dp[puddle[1] - 1][puddle[0] - 1] = -1;
         }
 
         //출발지점 1로 초기화
-        dp[1][1] = 1;
-        System.out.println("dp = " + Arrays.deepToString(dp));
-
+        dp[0][0] = 1;
         /**
-         * [0, 0, 0, 0, 0]
-         * [0, 1, 0, 0, 0]
-         * [0, 0, -1, 0, 0]
-         * [0, 0, 0, 0, 0]
+         * [1, 0, 0, 0]
+         * [0, -1, 0, 0]
+         * [0, 0, 0, 0]
+         *
+         * [1, 1, 1, 1],
+         * [1, 0, 1, 2],
+         * [1, 1, 2, 4]]
          */
-        for(int row=1; row<n+1; row++) {
-            for (int col=1; col<m+1; col++) {
-                /**
-                 * 1. row = 2, col = 1
-                 * dp[1][1] == 1 ->
-                 * dp[2][0] == 0
-                 *
-                 * 2. row = 1, col = 2
-                 * dp[0][2]
-                 */
+        for(int row=0; row<n; row++) {
+            for (int col=0; col<m; col++) {
                 //웅덩이를 만났을때? 다른루트!
                 if(dp[row][col] == -1) {
+                    dp[row][col] = 0;
                     continue;
                 }
-                if(dp[row-1][col] > 0) dp[row][col] += dp[row-1][col] % mod;
-                if(dp[row][col - 1] > 0) dp[row][col] += dp[row][col - 1] % mod;
+
+                /**
+                 * 계산식을 채우는 로직은 row = 0, col = 0 각 0일때 다 1로 채운다
+                 * 즉 맨위, 맨 좌측
+                 * 그리고 좌측과 위측이 존재하는 칸들은 이전 x행값을 자기자신과 더해고
+                 * 위 더한값에 또 이전 y값을 더하여 좌측, 위측 더한값을 구한다.
+                 */
+                if(row != 0) {
+                    dp[row][col] += dp[row-1][col];
+                }
+
+
+                if(col != 0) {
+                    dp[row][col] += dp[row][col-1];
+                }
             }
         }
-
-        return answer;
+        return dp[n-1][m-1] % mod;
     }
 
 }
