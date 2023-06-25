@@ -2,6 +2,7 @@ package programmers.greedy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import programmers.kruskal.ConnectTheIslands;
 
 import static org.assertj.core.api.Assertions.*;
 
