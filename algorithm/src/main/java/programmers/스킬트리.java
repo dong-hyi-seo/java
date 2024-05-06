@@ -1,5 +1,7 @@
 package programmers;
 
+import java.util.Arrays;
+
 /**
  * https://school.programmers.co.kr/learn/courses/13577/lessons/96093
  *
@@ -35,29 +37,31 @@ public class 스킬트리 {
         final String skill = "CBD";
         final String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
         int myAnswer = mySolution(skill, skill_trees);
+        System.out.println(myAnswer);
     }
 
     public static int mySolution(String skill, String[] skill_trees) {
-        char[] skillArr = skill.toCharArray();
-
         int answer = 0;
-        for (int s = 0; s < skill_trees.length; s++) {
-            String userSkill = skill_trees[s];
-            int position = 0;
-            for (int i = 0; i < skillArr.length; i++) {
-                System.out.println(skillArr[i]);
-                int index = userSkill.indexOf(skillArr[i]);
-                if (index == -1) {
-                    continue;
-                } else {
-                    if (position < index) {
-                        position = index;
-                    }
-                }
+        for (String s: skill_trees) {
+
+            //정해진 스킬제외한 나머지 스킬문자 제거
+             String s2 = s.replaceAll("[^"+skill+"]", "");
+
+             //BCD, CBD, CB, BD : CBD
+             System.out.println(s2);
+
+             //skill(CBD)값이 s2의 접두사냐 ?
+            if (skill.startsWith(s2)) {
+                answer++;
             }
         }
-
-
         return answer;
+    }
+
+    public static int anotherSolution(String skill, String[] skill_trees) {
+        return (int) Arrays.stream(skill_trees)
+                .map(s -> s.replaceAll("[^"+skill+"]", ""))
+                .filter(skill::startsWith)
+                .count();
     }
 }
